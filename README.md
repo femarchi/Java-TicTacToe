@@ -8,6 +8,7 @@ Future improvements:
 
  *  AI's added as extended Player classes;
  *  Comments for better understanding of code;
- *  Choice of bigger boards (4x4, 5x5, etc...);
+ *  ~~Choice of bigger boards (4x4, 5x5, etc...);~~
  *  User input option
  *  Simplification/Optimization using java libraries and other data structures (if necessary)
+ *  GUI

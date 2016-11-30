@@ -3,9 +3,9 @@ public class GameBoard {
 
 	private char board[][];
 	
-	GameBoard(){ //constructor
+	GameBoard(int size){ //constructor
 		
-		board = new char[3][3];			//create a 3x3 board
+		board = new char[size][size];			//create a size x size board
 		for(int i = 0; i < board.length; i++){	//fill board with empty spaces
 			for(int j = 0; j < board[i].length; j++){
 				board[i][j] = ' ';

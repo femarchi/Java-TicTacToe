@@ -3,16 +3,16 @@ public class GameManager {
 	
 	boolean finished = false;
 	char winner = ' '; //No winner
-	char turn = 'X'; //Starting player
+	char turn = 'O'; //Starting player
 	
 	public static void main(String[] args) {
 		
-		GameBoard board = new GameBoard();
+		GameBoard board = new GameBoard(5);
 		
 		board.printBoard();
 		
-		Player p1 = new Player('X', "X");
-		Player p2 = new Player('O', "O");
+		Player p1 = new Player('X', "Player1");
+		Player p2 = new Player('O', "Player2");
 		GameManager game = new GameManager();
 		
 		game.play(p1, p2, board);
@@ -22,7 +22,9 @@ public class GameManager {
 	private void play(Player X, Player O, GameBoard board){
 		
 		int moveCount = 0;
-		while(winner == ' ' && moveCount < 9){
+		int boardSize = board.getSize();
+		int maxMoves = boardSize * boardSize;
+		while(winner == ' ' && moveCount < maxMoves){
 			
 			moveCount++;
 			
@@ -54,22 +56,22 @@ public class GameManager {
 		boolean winnerFound = false;
 		int row = 0;
 		int col = 0;
+		int boardSize = board.getSize();
 		char possibleWinner;
 		boolean stop = false;
 		
-		//assume 3x3 board
 		//check rows
-		while(row < 3 && !winnerFound){
+		while(row < boardSize && !winnerFound){
 			possibleWinner = board.getCharAt(row,0);
 			stop = false;
-			while(col < 2 && !stop){
+			while(col < boardSize-1 && !stop){
 			
 				if(possibleWinner == ' ') stop = true;
 				if(board.getCharAt(row, col+1) != possibleWinner){
 					stop = true;
 				}
 				col++;
-				if(col == 2 && !stop){
+				if(col == boardSize-1 && !stop){
 					winnerFound = true;
 					winner = possibleWinner;
 				}
@@ -80,16 +82,16 @@ public class GameManager {
 		row = 0; //reset row position
 		
 		//check columns
-		while(col < 3 && !winnerFound){
+		while(col < boardSize && !winnerFound){
 			possibleWinner = board.getCharAt(0, col);
 			stop = false;
-			while(row < 2 && !stop){
+			while(row < boardSize-1 && !stop){
 				if(possibleWinner == ' ') stop = true;
 				if(board.getCharAt(row+1, col) != possibleWinner){
 					stop = true;
 				}
 				row++;
-				if(row == 2 && !stop){
+				if(row == boardSize-1 && !stop){
 					winnerFound = true;
 					winner = possibleWinner;
 				}
@@ -103,14 +105,14 @@ public class GameManager {
 		//check top-left to bottom-right diagonal
 		stop = false;
 		possibleWinner = board.getCharAt(0, 0);
-		while(col < 2 && row < 2 && !stop && !winnerFound){
+		while(col < boardSize-1 && row < boardSize-1 && !stop && !winnerFound){
 			if(possibleWinner == ' ') stop = true;
 			if(board.getCharAt(row+1, col+1) != possibleWinner){
 				stop = true;
 			}
 			row++;
 			col++;
-			if(col == 2 && row == 2 && !stop){
+			if(col == boardSize-1 && row == boardSize-1 && !stop){
 				winnerFound = true;
 				winner = possibleWinner;
 			}
@@ -118,17 +120,17 @@ public class GameManager {
 		
 		//check top-right to bottom-left diagonal
 		row = 0;
-		col = 2;
+		col = boardSize-1;
 		stop = false;
-		possibleWinner = board.getCharAt(0, 2);
-		while(col > 0 && row < 2 && !stop && !winnerFound){
+		possibleWinner = board.getCharAt(0, boardSize-1);
+		while(col > 0 && row < boardSize-1 && !stop && !winnerFound){
 			if(possibleWinner == ' ') stop = true;
 			if(board.getCharAt(row+1, col-1) != possibleWinner){
 				stop = true;
 			}
 			row++;
 			col--;
-			if(col == 0 && row == 2 && !stop){
+			if(col == 0 && row == boardSize-1 && !stop){
 				winnerFound = true;
 				winner = possibleWinner;
 			}

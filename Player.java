@@ -3,7 +3,7 @@ public class Player {
 	
 	public char X_or_O;
 	public String name;
-	private int nextMove[] = new int[2];
+	private int nextMove[] = new int[2]; //row and col positions
 	
 	
 	Player(char X_or_O, String name){

@@ -1,19 +1,30 @@
+import java.io.*;
 
 public class GameManager {
 	
 	boolean finished = false;
 	char winner = ' '; //No winner
-	char turn = 'O'; //Starting player
+	char turn = 'X'; //Starting player
 	
 	public static void main(String[] args) {
 		
-		GameBoard board = new GameBoard(5);
+		GameBoard board = new GameBoard(3);
+		GameManager game = new GameManager();
 		
 		board.printBoard();
 		
-		Player p1 = new Player('X', "Player1");
-		Player p2 = new Player('O', "Player2");
-		GameManager game = new GameManager();
+		Player p1 = new Player();
+		Player p2 = new Player();
+		
+		p1.setName(game.getPlayerName("Player 1"));
+		p1.setX_or_O('X');
+		p2.setName(game.getPlayerName("Player 2"));
+		p1.setX_or_O('O');
+		
+		
+		//Player p1 = new Player('X', "Player1");
+		//Player p2 = new Player('O', "Player2");
+		
 		
 		game.play(p1, p2, board);
 		
@@ -30,10 +41,12 @@ public class GameManager {
 			
 			if(turn == 'X'){
 				int[] move = X.getNextMove(board);
+				System.out.println(X.getName() + " plays\n");
 				board.setCharAt('X', move[0],move[1]);
 				turn = 'O'; //give turn to other player
 			}else if(turn == 'O'){
 					int[] move = O.getNextMove(board);
+					System.out.println(O.getName() + " plays\n");
 					board.setCharAt('O', move[0],move[1]);
 					turn = 'X'; //give turn to other player
 			}
@@ -44,8 +57,8 @@ public class GameManager {
 		
 		//print winner
 		switch(winner){
-			case 'X': System.out.println("The winner is " + X.name); break;
-			case 'O': System.out.println("The winner is " + O.name); break;
+			case 'X': System.out.println("The winner is " + X.getName()); break;
+			case 'O': System.out.println("The winner is " + O.getName()); break;
 			case ' ': System.out.println("Draw"); break;
 			default: System.out.println();
 		}
@@ -137,6 +150,19 @@ public class GameManager {
 		}
 		
 		return winner;		
+	}
+	
+	private String getPlayerName(String player){
+		String inputLine = null;
+		System.out.print("Enter "+ player+ "'s name: ");
+		try{
+			BufferedReader n = new BufferedReader(new InputStreamReader(System.in));
+			inputLine = n.readLine();
+			if(inputLine.length() == 0) return null;
+		}catch (IOException e){
+			System.out.println("IOException: " + e);
+		}
+		return inputLine;
 	}
 
 }

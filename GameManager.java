@@ -13,12 +13,12 @@ public class GameManager {
 		
 		board.printBoard();
 		
-		Player p1 = new Player();
-		Player p2 = new Player();
+		RandomPlayer p1 = new RandomPlayer();
+		RandomPlayer p2 = new RandomPlayer();
 		
-		p1.setName(game.getPlayerName("Player 1"));
+		p1.setName(game.getPlayerName("Player 1")); //get input from user
 		p1.setX_or_O('X');
-		p2.setName(game.getPlayerName("Player 2"));
+		p2.setName(game.getPlayerName("Player 2")); 
 		p1.setX_or_O('O');
 		
 		
@@ -30,7 +30,7 @@ public class GameManager {
 		
 	}
 	
-	private void play(Player X, Player O, GameBoard board){
+	private void play(RandomPlayer X, RandomPlayer O, GameBoard board){
 		
 		int moveCount = 0;
 		int boardSize = board.getSize();

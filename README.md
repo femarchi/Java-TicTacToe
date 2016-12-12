@@ -1,14 +1,19 @@
 # Java Tic Tac Toe
 
-A simple Tic Tac Toe game for future AI study.
+A simple Tic Tac Toe game for AI study.
 
-Default player behavior: chooses random place recursively as long as board is not filled.
+*Players Created:*
 
-Future improvements:
+ *  Random Player: chooses random places recursively.
 
- *  AI's added as extended Player classes;
- *  Comments for better understanding of code;
+*Future improvements:*
+
+ *  AI's implementing Player interface;
  *  ~~Choice of bigger boards (4x4, 5x5, etc...);~~
  *  ~~User input option~~
  *  Simplification/Optimization using java libraries and other data structures (if necessary)
  *  GUI
+ 
+ *Changelog:*
+ 
+ 12/12/2016 - Added player interface.

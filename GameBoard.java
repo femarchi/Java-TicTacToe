@@ -1,17 +1,13 @@
+import java.util.Arrays;
 
 public class GameBoard {
 
 	private char board[][];
 	
-	GameBoard(int size){ //constructor
-		
-		board = new char[size][size];			//create a size x size board
-		for(int i = 0; i < board.length; i++){	//fill board with empty spaces
-			for(int j = 0; j < board[i].length; j++){
-				board[i][j] = ' ';
-			}
-		}
-			
+	GameBoard(int size){
+		//create a size x size board and fill with empty chars
+		board = new char[size][size];
+		for(char value[] : board){ Arrays.fill(value, ' '); }
 	}
 	
 	public char getCharAt(int row, int col){
